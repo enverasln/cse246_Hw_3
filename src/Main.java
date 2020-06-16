@@ -9,25 +9,19 @@ import java.io.*;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-	    // Handling I/O Operations
-    	File inputFile = new File(".\\data\\"+args[0]);
-	    Scanner scanner = new Scanner(inputFile);
-		BufferedWriter writer = new BufferedWriter(new FileWriter(".\\data\\"+args[1]));
+		//BufferedWriter writer = new BufferedWriter(new FileWriter(".\\data\\"+args[1]));
 
 	    //Storing all cities in an ArrayList
-	    ArrayList<City> allCities = new ArrayList<City>();
+	    ArrayList<City> allCities = Utility.readFromFile(args[0]);
 
-	    while(scanner.hasNextLine()) {
-			int cityID = scanner.nextInt();
-			int xCoordinate = scanner.nextInt();
-			int yCoordinate = scanner.nextInt();
-			City newCity = new City(cityID, xCoordinate, yCoordinate);
-			allCities.add(newCity);
+	    Algorithm algorithm = new Algorithm(allCities);
 
-			System.out.println(newCity.toString());
-		}
 
-	    int [][] adjMatrix = new int[allCities.size()][allCities.size()];
+	    //algorithm.printPath(algorithm.getNearestNeighbourPath());
+	    algorithm.twoOptionPath();
+
+		Utility.writeFile(algorithm.toStringTwoOpt(), args[1]);
+
 
     }
 }

@@ -24,7 +24,7 @@ public class City {
     public int getDistance(City city) {
         int deltaX = this.xCoordinate - city.getXCoordinate();
         int deltaY = this.yCoordinate - city.getYCoordinate();
-        int distance = (int)Math.floor(Math.sqrt(deltaX * deltaX + deltaY * deltaY));
+        int distance = (int)Math.round(Math.sqrt(deltaX * deltaX + deltaY * deltaY));
         return distance;
     }
 
