@@ -10,9 +10,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 	    // Handling I/O Operations
-    	File inputFile = new File("D:\\Database\\Coding Database\\IntelliJ-Workspace\\cse246_Hw_3\\src\\example-input-1.txt");
+    	File inputFile = new File(".\\data\\"+args[0]);
 	    Scanner scanner = new Scanner(inputFile);
-		BufferedWriter writer = new BufferedWriter(new FileWriter("D:\\Database\\Coding Database\\IntelliJ-Workspace\\cse246_Hw_3\\src\\output.txt"));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(".\\data\\"+args[1]));
 
 	    //Storing all cities in an ArrayList
 	    ArrayList<City> allCities = new ArrayList<City>();
@@ -21,9 +21,13 @@ public class Main {
 			int cityID = scanner.nextInt();
 			int xCoordinate = scanner.nextInt();
 			int yCoordinate = scanner.nextInt();
-			allCities.add(new City(cityID, xCoordinate, yCoordinate));
+			City newCity = new City(cityID, xCoordinate, yCoordinate);
+			allCities.add(newCity);
+
+			System.out.println(newCity.toString());
 		}
 
+	    int [][] adjMatrix = new int[allCities.size()][allCities.size()];
 
     }
 }

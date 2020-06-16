@@ -27,4 +27,9 @@ public class City {
         int distance = (int)Math.floor(Math.sqrt(deltaX * deltaX + deltaY * deltaY));
         return distance;
     }
+
+    @Override
+    public String toString() {
+        return String.format("City-%d (%d, %d)", cityId, xCoordinate, yCoordinate);
+    }
 }
