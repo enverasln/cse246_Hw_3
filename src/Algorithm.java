@@ -16,7 +16,7 @@ public class Algorithm {
         City currentCity = allCities.remove(0);
         City closestCity = allCities.get(0);
 
-        int distance;
+        long distance;
 
         nearestNeighbourPath.add(currentCity);
 
@@ -43,32 +43,32 @@ public class Algorithm {
     }
 
     public void twoOptionPath() {
-        int bestLength = getPathLength(nearestNeighbourPath);
+        long bestLength = getPathLength(nearestNeighbourPath);
         ArrayList swappedPath;
         int swaps = 0;
         do {
             for(int i = 1; i < nearestNeighbourPath.size() - 2; i++) {
                 for(int j = i+1; j < nearestNeighbourPath.size() - 1; j++) {
 
-                    int distanceA = nearestNeighbourPath.get(i).getDistance(nearestNeighbourPath.get(i-1)) +
+                    long distanceA = nearestNeighbourPath.get(i).getDistance(nearestNeighbourPath.get(i-1)) +
                             nearestNeighbourPath.get(j+1).getDistance(nearestNeighbourPath.get(j));
 
-                    int distanceB = nearestNeighbourPath.get(i).getDistance(nearestNeighbourPath.get(j+1)) +
+                    long distanceB = nearestNeighbourPath.get(i).getDistance(nearestNeighbourPath.get(j+1)) +
                             nearestNeighbourPath.get(i-1).getDistance(nearestNeighbourPath.get(j));
 
-                    if (distanceA >= distanceB) {
+                    if (distanceA > distanceB) {
                         swappedPath = swap(i, j);
-                        int swappedPathLength = getPathLength(swappedPath);
+                        long swappedPathLength = getPathLength(swappedPath);
 
                         if (swappedPathLength < bestLength) {
+                            swaps++;
                             nearestNeighbourPath = swappedPath;
                             bestLength = swappedPathLength;
                         }
                     }
-
                 }
             }
-        } while (swaps != 0);
+        } while (swaps == 0);
     }
 
     public ArrayList<City> swap(int i, int j) {
@@ -84,14 +84,16 @@ public class Algorithm {
             d++;
         }
 
-        for (int k = j+1; k < nearestNeighbourPath.size(); k++) {
+        int size = nearestNeighbourPath.size();
+
+        for (int k = j+1; k < size; k++) {
             swapPath.add(nearestNeighbourPath.get(k));
         }
 
         return swapPath;
     }
 
-    public int getPathLength(ArrayList<City> cities) {
+    public long getPathLength(ArrayList<City> cities) {
         int totalDistance = 0;
         for(int i = 1; i < cities.size(); i++) {
             totalDistance += cities.get(i-1).getDistance(cities.get(i));

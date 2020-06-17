@@ -21,10 +21,10 @@ public class City {
         return yCoordinate;
     }
 
-    public int getDistance(City city) {
-        int deltaX = this.xCoordinate - city.getXCoordinate();
-        int deltaY = this.yCoordinate - city.getYCoordinate();
-        int distance = (int)Math.round(Math.sqrt(deltaX * deltaX + deltaY * deltaY));
+    public long getDistance(City city) {
+        long deltaX = this.xCoordinate - city.getXCoordinate();
+        long deltaY = this.yCoordinate - city.getYCoordinate();
+        long distance = (int)Math.round(Math.sqrt(deltaX * deltaX + deltaY * deltaY));
         return distance;
     }
 
